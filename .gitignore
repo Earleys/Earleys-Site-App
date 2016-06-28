@@ -17,6 +17,24 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#Common
+node_modules/
+plugins/
+
+#Android
+platforms/android/build.xml
+platforms/android/local.properties
+platforms/android/gradlew
+platforms/android/gradlew.bat
+platforms/android/gradle
+
+#IOS
+*.mode1v3
+*.perspectivev3
+*.pbxuser
+platforms/ios/build
+
+
 # =========================
 # Operating System Files
 # =========================

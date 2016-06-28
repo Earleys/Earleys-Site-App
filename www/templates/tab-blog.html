@@ -1,0 +1,13 @@
+<ion-view view-title="Blog">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="blog in blogPosts" type="item-text-wrap" href="#/tab/blog/{{blog.id}}">
+
+        <p>{{blog.title}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,12 @@
+<ion-view view-title="Profielen">
+  <ion-content>
+ 
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="profile in profiles" type="item-text-wrap" href="#/tab/profile/{{profile.username}}">
+
+      <img src='{{profile.avatar}}' alt='profiel van {{profile.username}}'/> {{profile.username}}
+      </ion-item>
+      </ion-list>
+
+  </ion-content>
+</ion-view>

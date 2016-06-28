@@ -1,0 +1,11 @@
+
+<ion-view view-title="Profiel van {{detail.username}}">
+  <ion-content class="padding">
+  <img src='{{detail.avatar}}' alt='profielfoto van {{detail.avatar}}'/> 
+    <p>
+       <div ng-bind-html="detail.profiletext">{{detail.profiletext}}</div>
+    </p>
+    <b>Laatst ingelogd: </b> {{detail.LastOnline}}
+
+  </ion-content>
+</ion-view>
