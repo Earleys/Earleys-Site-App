@@ -16,7 +16,7 @@ angular.module('starter.controllers', ['ionic'])
     $ionicLoading.hide()
 
     if (data != null) {
-      $scope.blogPosts = data;
+      $scope.blogPosts = data["Blogposts"];
     }
     else {
       checkConnection($state);
@@ -50,7 +50,7 @@ angular.module('starter.controllers', ['ionic'])
     $ionicLoading.hide()
 
     if (data != null) {
-      $scope.projects = data;
+      $scope.projects = data["Projects"];
     }
     else {
       checkConnection($state);
@@ -85,7 +85,7 @@ angular.module('starter.controllers', ['ionic'])
     $ionicLoading.hide();
 
     if (data != null) {
-      $scope.profiles = data;
+      $scope.profiles = data["Users"];
     }
     else {
       checkConnection($state);

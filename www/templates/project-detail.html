@@ -8,8 +8,8 @@
 <ion-view view-title="{{detail.name}}">
   <ion-content class="padding">
     <p>
-       <div ng-bind-html="detail.longdesc">{{detail.longdesc}}</div>
+       <div ng-bind-html="detail.description">{{detail.description}}</div>
     </p>
-    <a href="http://www.earleys.be/{{detail.downloadlink}}">Download</a>
+    <a ng-href="http://www.earleys.be/{{detail.downloadlink}}">Download</a>
   </ion-content>
 </ion-view>
