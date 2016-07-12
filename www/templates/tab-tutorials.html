@@ -1,0 +1,13 @@
+<ion-view view-title="Tutorials">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="tutorial in tutorials" type="item-text-wrap" href="#/tab/tutorial/{{tutorial.id}}">
+
+        <p>{{tutorial.name}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

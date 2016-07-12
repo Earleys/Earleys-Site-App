@@ -50,7 +50,7 @@ angular.module('starter.services', [])
 			var q = $q.defer();
 			$http.get('http://api.earleys.be/v2/project/' + id).success(function(data, status, headers, config) {
 
-						q.resolve(data);
+				q.resolve(data);
 
 				
 			})
@@ -81,7 +81,7 @@ angular.module('starter.services', [])
 		getSpecificProfile: function(name) {
 			var q = $q.defer();
 			$http.get('http://api.earleys.be/v2/user/' + name).success(function(data, status, headers, config) {
-						q.resolve(data);
+				q.resolve(data);
 			})
 			.error(function(data, status) {
 				q.resolve(data);
@@ -90,5 +90,59 @@ angular.module('starter.services', [])
 		}
 	}
 
-}]);
+}])
+
+.factory('TutorialService', ['$http', '$q', function($http, $q) {
+	return {
+
+		getTutorials: function() {
+			console.log("tutorialtest");
+			var q = $q.defer();
+			$http.get('http://api.earleys.be/v2/tutorials').success(function(data, status, headers, config) {
+
+				q.resolve(data);
+			})
+			.error(function(data, status) {
+				q.resolve(data);
+			});
+			return q.promise;
+		},
+		getSpecificTutorial: function(id) {
+			var q = $q.defer();
+			$http.get('http://api.earleys.be/v2/tutorial/' + id).success(function(data, status, headers, config) {
+				q.resolve(data);
+			})
+			.error(function(data, status) {
+				q.resolve(data);
+			});
+			return q.promise;
+		},
+		getSpecificTutorialPage: function(id, pageid) {
+			var q = $q.defer();
+			$http.get('http://api.earleys.be/v2/tutorial/' + id).success(function(data, status, headers, config) {
+				for (var i=0; i<data["tutpages"].length; i++) {
+					if (data["tutpages"][i].pageid == pageid) {
+						q.resolve(data["tutpages"][i]);
+						break;
+					}
+				}
+			})
+			.error(function(data, status) {
+				q.resolve(data);
+			});
+			return q.promise;
+		}
+	}
+
+}])
+
+
+.factory('SideMenuSwitcher', function ($rootScope) {
+	return {
+		leftSide: {src: ''},
+		rightSide: {src: ''}
+	};
+})
+
+;
 
