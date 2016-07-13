@@ -22,15 +22,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleDefault();
     }
 
-  if(window.Connection) {
-                if(navigator.connection.type == Connection.NONE) {
-                   alert("Er is geen internetverbinding. Bepaalde onderdelen van de app zullen niet werken.");
-                }
-            }
+    if(window.Connection) {
+      if(navigator.connection.type == Connection.NONE) {
+       alert("Er is geen internetverbinding. Bepaalde onderdelen van de app zullen niet werken.");
+     }
+   }
 
-  
 
-  });
+
+ });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -118,12 +118,47 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+
+  .state('tab.tutorials', {
+    url: '/tutorial',
+    views: {
+      'tab-tutorial': {
+        templateUrl: 'templates/tab-tutorials.html',
+        controller: 'TutorialController'
+      }
+    }
+  })
+  .state('tab.tutorial-detail', {
+    cache: false,
+    url: '/tutorial/:id',
+    views: {
+      'tab-tutorial': {
+        templateUrl: 'templates/tutorial-detail.html',
+        controller: 'TutorialControllerDetail'
+      }
+    }
+  })
+  .state('tab.tutpage-detail', {
+    url: '/tutorial/:id/:pageid',
+    views: {
+      'tab-tutorial': {
+        templateUrl: 'templates/tutpage-detail.html',
+        controller: 'TutorialPageControllerDetail'
+      }
+    }
+  })
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
-});
+})
+
+.config( ['$ionicConfigProvider', function($ionicConfigProvider)
+{
+  $ionicConfigProvider.tabs.position('bottom');
+}] );
 
 function onOffline() {
     // Handle the offline event
     alert('you are offline');
-}
+  }

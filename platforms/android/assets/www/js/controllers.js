@@ -16,7 +16,7 @@ angular.module('starter.controllers', ['ionic'])
     $ionicLoading.hide()
 
     if (data != null) {
-      $scope.blogPosts = data;
+      $scope.blogPosts = data["Blogposts"];
     }
     else {
       checkConnection($state);
@@ -50,7 +50,7 @@ angular.module('starter.controllers', ['ionic'])
     $ionicLoading.hide()
 
     if (data != null) {
-      $scope.projects = data;
+      $scope.projects = data["Projects"];
     }
     else {
       checkConnection($state);
@@ -85,7 +85,7 @@ angular.module('starter.controllers', ['ionic'])
     $ionicLoading.hide();
 
     if (data != null) {
-      $scope.profiles = data;
+      $scope.profiles = data["Users"];
     }
     else {
       checkConnection($state);
@@ -110,7 +110,69 @@ angular.module('starter.controllers', ['ionic'])
   //console.log(data);
 });
 
+})
+
+.controller('TutorialController', function($scope, $stateParams, $state, $ionicLoading, TutorialService) {
+  startLoading($ionicLoading)
+  TutorialService.getTutorials().then(function(data) {
+    $ionicLoading.hide()
+
+    if (data != null) {
+      $scope.tutorials = data["Tutorials"];
+    }
+    else {
+      checkConnection($state);
+    }
+
+  //console.log(data);
 });
+
+})
+
+.controller('TutorialControllerDetail', function($scope, $stateParams, $state, $ionicLoading, TutorialService, SideMenuSwitcher) {
+  startLoading($ionicLoading)
+  TutorialService.getSpecificTutorial($stateParams.id).then(function(data) {
+    $ionicLoading.hide()
+
+    if (data != null) {
+
+      $scope.detail = data;
+      $scope.leftSide = SideMenuSwitcher.leftSide;
+    }
+    else {
+      checkConnection($state);
+    }
+
+  });
+
+
+})
+
+
+.controller('TutorialPageControllerDetail', function($scope, $stateParams, $state, $ionicLoading, TutorialService, SideMenuSwitcher) {
+  startLoading($ionicLoading)
+  console.log($stateParams.param);
+  TutorialService.getSpecificTutorialPage($stateParams.id, $stateParams.pageid).then(function(data) {
+    TutorialService.getSpecificTutorial($stateParams.id).then(function(data2) {
+
+      $ionicLoading.hide()
+
+      if (data != null && data2 != null) {
+        $scope.detailtut = data;
+        $scope.detail = data2;
+      }
+      else {
+        checkConnection($state);
+      }
+
+    })
+  });
+
+
+});
+
+
+
 
 function startLoading($ionicLoading) {
   $ionicLoading.show({
@@ -120,11 +182,11 @@ function startLoading($ionicLoading) {
 
 function checkConnection($state) {
   if(window.Connection) {
-    console.log('test');
+    console.log('testing connection');
     if(navigator.connection.type == Connection.NONE) {
       alert("Er is geen internetverbinding. Hierdoor kan dit onderdeel niet worden weergegeven.");
-   }
-   else {
+    }
+    else {
      alert("Earleys App kan momenteel geen data ophalen. Je internetverbinding lijkt te werken, dus probeer het later nogmaals. Sorry! :(");
    }
  }
@@ -133,3 +195,4 @@ function checkConnection($state) {
  }
  $state.go( "tab.dash" );
 }
+

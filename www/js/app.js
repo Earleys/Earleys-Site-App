@@ -22,15 +22,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleDefault();
     }
 
-  if(window.Connection) {
-                if(navigator.connection.type == Connection.NONE) {
-                   alert("Er is geen internetverbinding. Bepaalde onderdelen van de app zullen niet werken.");
-                }
-            }
+    if(window.Connection) {
+      if(navigator.connection.type == Connection.NONE) {
+       alert("Er is geen internetverbinding. Bepaalde onderdelen van de app zullen niet werken.");
+     }
+   }
 
-  
 
-  });
+
+ });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -119,7 +119,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
 
-    .state('tab.tutorials', {
+  .state('tab.tutorials', {
     url: '/tutorial',
     views: {
       'tab-tutorial': {
@@ -128,7 +128,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  // Tutorials cannot be cached because of a bug in the side menus.
+  // repro (with cache enabled): open tutorial, open a tutpage, click tutorial tab in nav, 
+  //(if needed, click the same tutorial again), and then try closing the side menu. It won't work.
   .state('tab.tutorial-detail', {
+    cache: false,
     url: '/tutorial/:id',
     views: {
       'tab-tutorial': {
@@ -137,7 +141,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-    .state('tab.tutpage-detail', {
+  .state('tab.tutpage-detail', {
+    cache: false,
     url: '/tutorial/:id/:pageid',
     views: {
       'tab-tutorial': {
@@ -146,13 +151,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  // end of tutorials
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
-});
+})
+
+.config( ['$ionicConfigProvider', function($ionicConfigProvider)
+{
+  $ionicConfigProvider.tabs.position('bottom');
+}] );
 
 function onOffline() {
     // Handle the offline event
     alert('you are offline');
-}
+  }
