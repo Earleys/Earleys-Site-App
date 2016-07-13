@@ -129,7 +129,7 @@ angular.module('starter.controllers', ['ionic'])
 
 })
 
-.controller('TutorialControllerDetail', function($scope, $stateParams, $state, $ionicLoading, TutorialService, SideMenuSwitcher) {
+.controller('TutorialControllerDetail', function($scope, $stateParams, $state, $ionicLoading, TutorialService) {
   startLoading($ionicLoading)
   TutorialService.getSpecificTutorial($stateParams.id).then(function(data) {
     $ionicLoading.hide()
@@ -137,7 +137,6 @@ angular.module('starter.controllers', ['ionic'])
     if (data != null) {
 
       $scope.detail = data;
-      $scope.leftSide = SideMenuSwitcher.leftSide;
     }
     else {
       checkConnection($state);
@@ -149,7 +148,7 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 
-.controller('TutorialPageControllerDetail', function($scope, $stateParams, $state, $ionicLoading, TutorialService, SideMenuSwitcher) {
+.controller('TutorialPageControllerDetail', function($scope, $stateParams, $state, $ionicLoading, TutorialService) {
   startLoading($ionicLoading)
   console.log($stateParams.param);
   TutorialService.getSpecificTutorialPage($stateParams.id, $stateParams.pageid).then(function(data) {
