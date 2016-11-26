@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Users\Earleys\Desktop\e site ionic\EarleysApp\platforms\android\CordovaLib\assets"/></dataSet><dataSet config="release"><source path="C:\Users\Earleys\Desktop\e site ionic\EarleysApp\platforms\android\CordovaLib\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Users\Earleys\Documents\Repositories\e site ionic\EarleysApp\Earleys-Site-App\platforms\android\CordovaLib\assets"/></dataSet><dataSet config="release"><source path="C:\Users\Earleys\Documents\Repositories\e site ionic\EarleysApp\Earleys-Site-App\platforms\android\CordovaLib\src\release\assets"/></dataSet></merger>

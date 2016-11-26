@@ -137,12 +137,6 @@ angular.module('starter.services', [])
 }])
 
 
-.factory('SideMenuSwitcher', function ($rootScope) {
-	return {
-		leftSide: {src: ''},
-		rightSide: {src: ''}
-	};
-})
 
 ;
 
