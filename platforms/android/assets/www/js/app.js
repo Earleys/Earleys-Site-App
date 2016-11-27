@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -28,9 +28,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
      }
    }
 
+   document.addEventListener("deviceready", onDeviceReady, false);
+   function onDeviceReady() {
+    window.open = cordova.InAppBrowser.open;
+  }
 
 
- });
+
+});
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

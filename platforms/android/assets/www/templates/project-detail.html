@@ -6,7 +6,9 @@
     </p>
     <hr/>
      <b>Let op: de meeste van deze downloads zijn bedoeld voor PC's, niet voor mobiele apparaten.</b><br/>
-    <a ng-href="http://www.earleys.be/{{detail.downloadlink}}">Download</a>
+
+
+    <button class="button" ng-click="showConfirmDownload(detail.downloadlink)">Download {{detail.downloadlink}}</button>
 
   </ion-content>
 </ion-view>

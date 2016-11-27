@@ -1,0 +1,21 @@
+<ion-view view-title="{{detail.title}}">
+	<ion-content class="padding">
+
+		<p>
+			<div ng-bind-html="detail.article">{{detail.article}}</div>
+		</p><br/>
+		<hr/>
+
+		<span ng-if="detail.comments.length > 0">
+			<h2>Reacties</h2>
+			<hr/><br/>
+			<ion-list class="item-avatar" ng-repeat="comment in detail.comments" type="item-text-wrap">
+
+				<p style="float:left">{{comment.username}}</p> <p style="float:right">{{comment.date}}</p><br/><br/>
+				<p>{{comment.comment}}</p>
+				<hr/>
+			</ion-list>
+		</span>
+
+	</ion-content>
+</ion-view>

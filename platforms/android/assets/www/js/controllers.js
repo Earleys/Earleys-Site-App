@@ -61,7 +61,7 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 
-.controller('ProjectControllerDetail', function($scope, $stateParams, $state, $ionicLoading, ProjectService) {
+.controller('ProjectControllerDetail', function($scope, $stateParams, $state, $ionicLoading, ProjectService, $ionicPopup, $cordovaFileTransfer, $timeout) {
   startLoading($ionicLoading);
   ProjectService.getSpecificProject($stateParams.projectId).then(function(data) {
     $ionicLoading.hide()
@@ -76,7 +76,56 @@ angular.module('starter.controllers', ['ionic'])
   //console.log(data);
 });
 
-})
+  $scope.showConfirmDownload = function(url) {
+
+      // I know this is ugly
+      console.log(url);
+      if (url.endsWith('.apk')) {
+        var confirmPopup = $ionicPopup.confirm({
+         title: 'Bestand Downloaden',
+         template: 'Deze applicatie kan mogelijk geïnstalleerd worden op dit apparaat. Wil je de applicatie downloaden?'
+       });
+      } else {
+        var confirmPopup = $ionicPopup.confirm({
+         title: 'Bestand Downloaden',
+         template: 'Opgelet: Dit is waarschijnlijk geen .APK bestand, wat betekent dat je dit bestand niet zal kunnen gebruiken op je mobiele telefoon. Wil je het bestand toch downloaden?'
+       });
+      }
+
+
+      confirmPopup.then(function(res) {
+       var name = url.split("/").pop();
+       var targetPath = cordova.file.dataDirectory + name;
+       var trusted = true;
+       var options = {};
+       console.log(name);
+       if(res) {
+        if (!url.startsWith('http://www.earleys.be')) {
+          url = 'http://www.earleys.be/' + url;
+        }
+
+            $cordovaFileTransfer.download(url, targetPath, options, trusted)
+      .then(function(result) {
+        cordova.plugins.notification.local.schedule({
+    title: "Download is voltooid!",
+    message: "De download van '" + name + "' is voltooid.",
+    icon: "http://earleys.be/images/earleys_logo.png"
+});
+      }, function(err) {
+        console.log(JSON.stringify(err, null, 4));
+        alert("Foutcode: " + err.code + "\r\nDe download kan niet voltooid worden. Probeer het later nog een keer! Controleer ook of de app toegang heeft tot de opslag van je apparaat.");
+      }, function (progress) {
+        $timeout(function () {
+          $scope.downloadProgress = (progress.loaded / progress.total) * 100;
+        });
+      });
+
+      }
+    });
+
+    };
+
+  })
 
 
 .controller('ProfileController', function($scope, $rootScope, $state, $ionicLoading, ProfileService) {

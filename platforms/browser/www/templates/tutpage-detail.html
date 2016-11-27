@@ -1,0 +1,59 @@
+<ion-side-menu expose-aside-when="large"  style="padding-top:50px; margin-top:50px;"  drag-content="true">
+<ion-content>
+  <ion-list>
+    <h3 class="title" style="text-align:center;">Hoofdstukken</h3>
+    <ion-item class="item-remove-animate item-avatar item-icon-right item-text-wrap" ng-repeat="tutpage in detail.tutpages" type="item-text-wrap" href="#/tab/tutorial/{{detail.id}}/{{tutpage.pageid}}" backdropClickToClose="false">
+      <p>{{tutpage.pagename}}</p>
+      <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-item>
+    </ion-content>
+  </ion-list>
+
+
+</ion-side-menu>
+
+<ion-side-menu-content>
+        <ion-nav-title>
+           Test
+        </ion-nav-title>
+  <ion-view view-title="{{detailtut.pagename}}" title="{{detailtut.pagename}}">
+
+
+    <ion-header-bar style="background-color:#cc8f00; width:100%; height:50px; margin-top:40px; padding-bottom:0px;">
+      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+      <h2 class="title" style="color:white;">{{detailtut.pagename}}</h2>
+    </ion-header-bar>
+
+    <ion-content class="padding" style="padding-top:50px;" ng-controller="TutorialPageControllerDetail">
+
+      <p>
+        <div ng-bind-html="detailtut.pagetext">{{detailtut.pagetext}}</div>
+      </p>
+
+
+    <span ng-if="detailtut.comments.length > 0">
+      <br/><hr/>
+      <h2>Reacties</h2>
+      <hr/><br/>
+      <ion-list class="item-avatar" ng-repeat="comment in detailtut.comments" type="item-text-wrap">
+
+        <p style="float:left">{{comment.username}}</p> <p style="float:right">{{comment.date}}</p><br/><br/>
+        <p>{{comment.comment}}</p>
+        <hr/>
+      </ion-list>
+    </span>
+
+
+    </ion-content>
+  </ion-view>
+
+</ion-side-menu-content>
+
+<script>
+  function ContentController($scope, $ionicSideMenuDelegate) {
+    $scope.toggleLeft = function() {
+      $ionicSideMenuDelegate.toggleLeft();
+    };
+  }
+</script>
+
