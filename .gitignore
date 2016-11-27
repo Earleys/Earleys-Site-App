@@ -20,6 +20,8 @@ $RECYCLE.BIN/
 #Common
 node_modules/
 plugins/
+platforms/
+plugins/
 
 #Android
 platforms/android/build.xml
